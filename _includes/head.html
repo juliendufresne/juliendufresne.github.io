@@ -1,17 +1,38 @@
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+<head prefix="og: http://ogp.me/ns#">
+    <meta charset="utf-8">
+    <meta name="author" content="Julien Dufresne">
+    <link href="http://gmpg.org/xfn/11" rel="profile">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-  <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" type="text/css" href="{{ "/css/stylesheet.css" | prepend: site.baseurl }}" media="screen">
-  <link rel="stylesheet" type="text/css" href="{{ "/css/github-light.css" | prepend: site.baseurl }}" media="screen">
-  <link rel="stylesheet" type="text/css" href="{{ "/css/print.css" | prepend: site.baseurl }}" media="print">
+    <meta name="description"
+          content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
 
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
-  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}">
+    <title>{{ site.title | escape }}{% if page.title %} • {{ page.title | escape }}{% endif %}</title>
 
-  <title>{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
+    <meta property="og:title" content="Home">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="http://juliendufresne.github.io/">
+    <meta property="og:description" content="">
+
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@jlndfrsn">
+    <meta name="twitter:creator" content="@jlndfrsn">
+    <meta name="twitter:title" content="Home">
+    <meta name="twitter:description" content="">
+
+
+    <link rel="stylesheet" type="text/css" href="{{ '/assets/css/google-fonts.css' | prepend: site.baseurl | prepend: site.url }}">
+    <link rel="stylesheet" type="text/css" href="{{ '/assets/css/stylesheet.css' | prepend: site.baseurl | prepend: site.url }}" media="screen">
+    <link rel="stylesheet" type="text/css" href="{{ '/assets/css/github-light.css' | prepend: site.baseurl | prepend: site.url }}" media="screen">
+    <link rel="stylesheet" type="text/css" href="{{ '/assets/css/print.css' | prepend: site.baseurl | prepend: site.url }}" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="{{ '/assets/js/html5shiv.min.js' | prepend: site.baseurl | prepend: site.url }}"></script><![endif]-->
+    <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+    <link rel="alternate" type="application/rss+xml" title="{{ site.title }}"
+          href="{{ '/feed.xml' | prepend: site.baseurl | prepend: site.url }}">
 </head>

@@ -1,49 +1,12 @@
 ---
 
 layout: post
-title: "Ideal branching model"
+title: "Git workflow"
 date:   2016-05-14 04:04:20 +0000
 categories: git
 excerpt: "Github flow"
 
 ---
-
-Branching model is one of the first thing a developer has to know when
-he/she wants to contribute to a project. It must be **distinguishable**,
-**easy** to learn, **well known** by every developers and
-**provide tools** to ease its use.
-
-Distinguishable  
-It should be clear to others that you are using this branching model and
-not another.  
-If a developer wants to contribute and don't know that you are using a
-branching model, he could be confuse or act if there were no branching
-model.  
-One way to avoid this is to create a `CONTRIBUTE.md` file in the root
-directory of your project. Sadly, not many people think to look if such
-a file exists. You may need to add a link in your `README.md` file as 
-well.  
-You can also set your default branch to something else than master. This
-way people who knows the workflow will directly understand.
-
-Easy to learn  
-If you want people to contribute to your project, they should not be
-annoyed with something very complicated to learn/understand.  
-Terms like feature, hot-fix, release has nothing to do with a version
-control system and add more complexity for new developers.  
-So use a branching model as simple as possible.
-
-Well known  
-The more your branching model is known by people, the easiest it is to 
-integrate new developer in your project.
-
-Providing tools  
-It is one optional task. If you found a branching model that is easy to 
-learn, there should not be the need for a tool to use.  
-But sometimes tools are inevitable. They should be use for complex tasks
-and not mandatory at least for the common task.  
-For example, tools may be useful when you want to maintain a changelog
-or have a clean version control history.
 
 # A well known workflow: The [GitHub flow](http://scottchacon.com/2011/08/31/github-flow.html)
 

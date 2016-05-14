@@ -2,7 +2,6 @@
 layout: default
 ---
 <section id="main-content">
-
     <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
         <header>
@@ -17,9 +16,34 @@ layout: default
             </p>
         </header>
 
+        {% if page.tldr %}
+        <details>
+            <summary>tl;dr</summary>
+            <p>{{ page.tldr }}</p>
+        </details>
+        {% endif %}
+
         <div itemprop="articleBody">
             {{ content }}
         </div>
-
     </article>
 </section>
+
+<div id="disqus_thread"></div>
+<script>
+    /*
+     var disqus_config = function () {
+     this.page.url = "{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}";
+     this.page.identifier = "{{ page.url | replace:'index.html','' }}";
+     };
+     */
+    (function() {
+        var d = document, s = d.createElement('script');
+
+        s.src = '//juliendufresneblog.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
