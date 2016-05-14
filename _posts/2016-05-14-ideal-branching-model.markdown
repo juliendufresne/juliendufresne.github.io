@@ -6,10 +6,11 @@ tags:
   - development
   - git
   - workflow
-  - branching model
+  - branching-model
 permalink: /ideal-branching-model-specification.html
 excerpt: "Explain what an ideal branching model / workflow should be"
-tldr: "This article explain what a good branching model is"
+summary: "Expose what a workflow should be composed of"
+
 ---
 
 Contributing to a project the right way is not always easy. We have to 
