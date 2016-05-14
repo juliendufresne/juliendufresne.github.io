@@ -11,7 +11,7 @@ email: blog@dfrsn.me
 description: > # this means to ignore newlines until "baseurl:"
   Julien Dufresne's Blog
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "www.juliendufresne.fr" # the base hostname & protocol for your site
+url: "http://www.juliendufresne.fr" # the base hostname & protocol for your site
 twitter_username: jlndfrsn
 github_username:  juliendufresne
 
