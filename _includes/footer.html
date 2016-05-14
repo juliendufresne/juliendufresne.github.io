@@ -10,19 +10,30 @@
                 </ul>
             </div>
 
-            <div class="footer-col footer-col-2">
+            <div class="footer-col footer-col-1">
                 <ul class="social-media-list">
-                    {% if site.github_username %}
                     <li>
-                        {% include icon-github.html username=site.github_username %}
+                        <a href="https://github.com/juliendufresne">
+                            <span class="icon icon--github">{% include icon-github.svg %}</span>
+                            <span class="username">juliendufresne</span>
+                        </a>
                     </li>
-                    {% endif %}
+                    <li>
+                        <a href="https://twitter.com/jlndfrsn">
+                            <span class="icon icon--twitter">{% include icon-twitter.svg %}</span>
+                            <span class="username">jlndfrsn</span></a>
+                    </li>
+                </ul>
+            </div>
 
-                    {% if site.twitter_username %}
+            <div class="footer-col footer-col-1">
+                <ul class="social-media-list">
                     <li>
-                        {% include icon-twitter.html username=site.twitter_username %}
+                        <a href="https://fr.linkedin.com/in/jdufresne">
+                            <span class="icon icon--linkedin">{% include icon-linkedin.svg %}</span>
+                            <span class="username">jdufresne</span>
+                        </a>
                     </li>
-                    {% endif %}
                 </ul>
             </div>
         </div>

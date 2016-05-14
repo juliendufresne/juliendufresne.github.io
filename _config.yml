@@ -12,8 +12,6 @@ description: >
   Julien Dufresne &cir; Senior Software Developer &amp; Solution Architect
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://www.juliendufresne.fr" # the base hostname & protocol for your site
-twitter_username: jlndfrsn
-github_username:  juliendufresne
 
 exclude:
   - docker.md
