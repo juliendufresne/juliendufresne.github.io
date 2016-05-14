@@ -1,8 +1,13 @@
 ---
 layout: post
-title: "Ideal branching model"
+title: "Ideal branching model specification"
 date:   2016-05-14 16:03:20 +0000
-categories: development
+tags:
+  - development
+  - git
+  - workflow
+  - branching model
+permalink: /ideal-branching-model-specification.html
 excerpt: "Explain what an ideal branching model / workflow should be"
 tldr: "This article explain what a good branching model is"
 ---
