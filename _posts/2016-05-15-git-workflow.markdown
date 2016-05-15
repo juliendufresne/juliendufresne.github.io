@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Git workflow"
-date:   2016-05-15 01:49:42 +0000
+date:   2016-05-15 01:38:42 +0000
 tags:
   - development
   - git
