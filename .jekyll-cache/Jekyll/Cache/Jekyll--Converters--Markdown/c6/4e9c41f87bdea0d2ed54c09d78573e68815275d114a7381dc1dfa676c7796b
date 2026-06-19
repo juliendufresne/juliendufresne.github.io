@@ -1,0 +1,211 @@
+I"�'<p>In a previous article, I explained what makes a branching model good. 
+Now I will present my own. It looks a lot like the <a href="http://scottchacon.com/2011/08/31/github-flow.html">GitHub flow</a> 
+but with some extra rules.</p>
+
+<h1 id="the-basic-github-flow">The Basic: <a href="http://scottchacon.com/2011/08/31/github-flow.html">GitHub flow</a></h1>
+
+<p>Since one of the criteria to choose a good workflow is to use a very
+well known one, I couldn’t tell you that I’m using a totally exotic one.</p>
+
+<p>It seems that I used the Github flow without even knowing it has a name.<br />
+If you don’t know the branching model yet, I will give you some key
+principles:</p>
+
+<ul>
+  <li>The master branch is deployable at any time</li>
+  <li>New features and fixes are created from master</li>
+  <li>Use pull request</li>
+  <li>Merge pull request to master after review</li>
+</ul>
+
+<h1 id="some-additions">Some additions</h1>
+
+<p>The GitHub flow is very well designed but I like to add some extra.</p>
+
+<h2 id="one-featurefix-per-branch">One feature/fix per branch</h2>
+
+<p>First, I must insist on the fact that a branch <em>MUST</em> contain only one 
+feature. Too often I see a branch that contain a feature and some 
+global refactoring. I used to do it myself and each time I regret it.</p>
+
+<p>Suppose you start a new feature and discover a bug in the current
+version of the master branch. You want to fix it on your branch. What 
+could happen ?</p>
+<ul>
+  <li>Your feature is not ready yet so you can not ask for a merge. The bug
+ is not fixed as long as your feature is not developed</li>
+  <li>Once the maintainer merge your branch into master, you discover a bug 
+ in production. What is the reason of the bug ? Is it the new feature ? 
+ The bug fix ? We don’t know and need to investigate. This may mean we 
+ have to rollback to an older version but it is not always easy to
+ rollback (database dependencies, other dependencies, …)</li>
+  <li>Suppose you are using semver (you should). What should be the new
+ tag version ? Probably X.(Y+1).Z or (X+1).Y.Z but we don’t know we have
+ fixed a bug. And if you are working on a library, user may not benefit
+ from your fix because there requirements does not fit the new versions.</li>
+  <li>How can we manage automatically a changelog if more than one thing
+ lived inside a branch ?</li>
+</ul>
+
+<h2 id="define-some-maintainers">Define some maintainers</h2>
+
+<p>Maintainers are ones responsible for merging pull request to the master 
+branch.</p>
+
+<p>One thing that I like with open source projects is that you have some
+clearly defined some maintainers. If you are a contributor, you may not
+know them but at least you know you are not one of them. This means that
+as a developer, you know you are only responsible for feature/fix
+<strong>proposal</strong>.</p>
+
+<p>In other term, developers have to know some basic commands:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">git clone &lt;repo_url&gt;</code> to get the code</li>
+  <li><code class="language-plaintext highlighter-rouge">git checkout -b &lt;branch_name&gt;</code> to create the branch <code class="language-plaintext highlighter-rouge">branch_name</code></li>
+  <li><code class="language-plaintext highlighter-rouge">git add &lt;some_files&gt;</code> and <code class="language-plaintext highlighter-rouge">git commit</code> to modify the source code</li>
+  <li><code class="language-plaintext highlighter-rouge">git push -u origin &lt;branch_name&gt;</code> to propose a change to the code
+base</li>
+</ul>
+
+<p>It is basically it. It’s very easy for a developer to get started, don’t
+you think ?</p>
+
+<p>Separating maintainers from developers allows you to require more 
+advanced command when it comes to merge a Pull Request</p>
+
+<h2 id="keep-your-history-clean">Keep your history clean</h2>
+
+<p>This part is the more controversial and you may think I’m completely 
+crazy but I would really like to discuss about this so please comment.</p>
+
+<p>I like to keep my git history as clean as possible.<br />
+Developers may want to split their work into multiple commit message and
+this is a very good thing when the feature/fix is not ready.</p>
+
+<p>But when both developers and maintainers agreed that the branch is 
+ready for production, I want to have only one commit referencing this 
+feature.</p>
+
+<p>Let’s be clear. I’m not talking about long living branch and very
+massive feature containing thousands of lines. This should be avoided at
+all cost. Branches should have a very short life time.</p>
+
+<p>So when it comes to merge the pull request, I squash everything to a
+single commit, rewording the first commit message if necessary and click
+the “Squash and merge” button in GitHub. The latter thing will append
+the pull request reference to the commit message for a quick access.</p>
+
+<h2 id="short-living-branches">Short living branches</h2>
+
+<p>There is nothing more frustrating than having to resolve conflicts.<br />
+Resolving conflict means there is some code <em>you don’t know</em> that
+changed between the time you get the code and the time you edited it.</p>
+
+<p>Since you don’t know what the purpose of the new code, you basically 
+don’t know how to resolve the conflict. You need help from the one 
+who committed the new code. But he or she doesn’t know your code either.
+So You need to both explain what your part of the code is doing.</p>
+
+<p>In short, it’s shitty as hell.</p>
+
+<p>We need to ensure there is as less conflict as possible. One way to 
+avoid conflict (both physically and in your vcs) you need to merge 
+often. So branches should not live too long.</p>
+
+<p>Defining <em>too long</em> is not easy because it depends on the repository 
+activity. The more active a repository is the shorter a branch should
+live because the more frequent conflict will be.</p>
+
+<p>For example, in a company, I use to limit the branch life to 2 days. 
+The reason for that is that if the feature requires more than 2 days to
+be developed, it probably means that we did not delimit the scope of the
+feature well enough. The more time a feature requires the wrongest the
+estimation will be.
+If a feature cost less than 2 days it could lead to two things:</p>
+<ul>
+  <li>the feature is released in time. Everything is good.</li>
+  <li>the feature is not released and the developer can give a new
+estimation of the work remaining. With that in mind, the manager can
+choose to cancel the feature or not.</li>
+</ul>
+
+<p>Now imagine the second scenario, if the task is estimated to one month.
+The manager can’t decide to cancel the feature because it already cost a
+lot.</p>
+
+<p>So branches should have a very short lifetime for both managers and 
+developers sake.</p>
+
+<h2 id="use-semver-tag-for-your-version-history">Use <a href="http://semver.org/">semver</a> tag for your version history</h2>
+
+<p>More and more developers know semver and that’s a relief !</p>
+
+<p>Each time you deploy your application, you should create a tag following
+semantic versioning MAJOR.MINOR.PATCH:</p>
+<ul>
+  <li>MAJOR is for backward incompatible changes</li>
+  <li>MINOR is for new feature backward compatible</li>
+  <li>PATCH is for bug fix that don’t break backward compatibility.</li>
+</ul>
+
+<p>Since the master branch should always be deployable, it means every time
+you merge a pull request, you can create a new tag. It looks like we 
+need an automation here.
+In order to help you define the new tag, you should think of adding a 
+label to the pull request:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">bug</code> for a bug-fix (update PATCH version)</li>
+  <li><code class="language-plaintext highlighter-rouge">enhancement</code> for a backward compatible new feature (update MINOR
+version)</li>
+  <li><code class="language-plaintext highlighter-rouge">BC break feature</code> for a non backward compatible new feature (update
+MAJOR version)</li>
+</ul>
+
+<p><em>Note 1: I don’t talk about alpha, beta and RC tags because I found
+those overcomplicated. They should be used when big features are merge
+but as said before, that should never be the case</em></p>
+
+<h2 id="maintain-a-changelog">Maintain a changelog</h2>
+
+<p>Maintaining a changelog can be such a pain.</p>
+
+<p>In our case, the changelog is very easy: it corresponds to our commit 
+history !<br />
+If you remember what I wrote a few line above, when I merge a pull
+request, I squash everything from the branch in order to have only one
+commit for the branch with the link to the pull request.</p>
+
+<p>Yes, that’s cool. But commit history does not tell us which commit
+corresponds to which tag. We need a <code class="language-plaintext highlighter-rouge">CHANGELOG.md</code> file.<br />
+But hey, <a href="https://github.com/skywinder/github-changelog-generator#output-example">some tools</a> already exists. Use it.</p>
+
+<p>You should also think about automating this.</p>
+
+<h2 id="special-case-maintaining-a-library">Special case: Maintaining a Library</h2>
+
+<p>When you maintain a library project, you probably needs to maintain 
+several branch. One for each MAJOR.MINOR version you want to maintain.<br />
+Let’s take an example. Suppose we are maintaining the following versions:</p>
+<ul>
+  <li>2.3.*</li>
+  <li>2.7.*</li>
+  <li>3.0.*
+Then We should have one <strong>stable</strong> branch for each:</li>
+  <li>2.3</li>
+  <li>2.7</li>
+  <li>master</li>
+</ul>
+
+<p>Now, when we add a new feature, it should be merged in the master branch
+only.<br />
+But what if we fix a bug ? Chances are that the maintainer needs to
+merge it to multiple branches. The maintainer can try to cherry pick the
+fix to all branches but he/she will probably needs the help of the 
+developer. In such a case, creating multiple pull request may be the
+easiest solution.</p>
+
+<p>The cherry pick option is not easy to automate. We can <a href="https://developer.github.com/guides/building-a-ci-server/">build a CI Server</a>
+that will try to do the cherry pick in a local clone. But if it fails, 
+the maintainer should ask the developer to create one branch per
+maintained version of the library.</p>
+:ET
